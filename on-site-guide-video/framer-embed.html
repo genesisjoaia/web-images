@@ -1,90 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iPhone 18 Pro (black) · Lion Monument guide</title>
 <style>
-  /* Design unit: 1em = 1pt of the real iPhone 18 Pro (screen 402 x 874 pt, body 71.9 x 149.6 mm).
-     The whole phone scales from the iframe size, so it always fits and is fully visible. */
-  html, body { margin: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
-  .wrap { position: fixed; inset: 0; container-type: size; display: grid; place-items: center;
+.o18-wrap { width: 100%; height: 100%; container-type: size; display: grid; place-items: center; overflow: hidden; box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
-  .stage { width: min(100cqw, 100cqh * 444 / 904); aspect-ratio: 444 / 904;
+  .o18-stage { width: min(100cqw, 100cqh * 444 / 904); aspect-ratio: 444 / 904;
     font-size: calc(min(100cqw, 100cqh * 444 / 904) / 444); display: grid; place-items: center; }
 
-  .phone { position: relative; width: 434em; height: 904em; box-sizing: border-box; padding: 15em 16em;
+  .o18-phone { position: relative; width: 434em; height: 904em; box-sizing: border-box; padding: 15em 16em;
     border-radius: 79em; background: linear-gradient(145deg, #3a3a3e 0%, #131315 16%, #050506 48%, #131315 82%, #404046 100%);
     box-shadow: inset 0 0 0 1.2em rgba(255,255,255,.12), inset 0 0 0 3em #000; }
-  .bezel { width: 100%; height: 100%; background: #000; border-radius: 63em; padding: 0; box-sizing: border-box; }
-  .screen { position: relative; display: flex; flex-direction: column; width: 100%; height: 100%;
+  .o18-bezel { width: 100%; height: 100%; background: #000; border-radius: 63em; padding: 0; box-sizing: border-box; }
+  .o18-screen { position: relative; display: flex; flex-direction: column; width: 100%; height: 100%;
     overflow: hidden; background: #fff; border-radius: 63em; color: #000; }
 
-  .status { flex: none; height: 54em; display: flex; align-items: center; justify-content: space-between;
+  .o18-status { flex: none; height: 54em; display: flex; align-items: center; justify-content: space-between;
     padding: 6em 34em 0 50em; box-sizing: border-box; }
-  .time { font-size: 17em; font-weight: 600; letter-spacing: -.01em; }
-  .icons { display: flex; align-items: center; gap: 7em; }
-  .icons svg { height: 12em; width: auto; display: block; }
+  .o18-time { font-size: 17em; font-weight: 600; letter-spacing: -.01em; }
+  .o18-icons { display: flex; align-items: center; gap: 7em; }
+  .o18-icons svg { height: 12em; width: auto; display: block; }
 
-  .video { flex: none; display: block; width: 100%; aspect-ratio: 1080 / 1898; object-fit: cover; background: #fff; }
+  .o18-video { flex: none; display: block; width: 100%; aspect-ratio: 1080 / 1898; object-fit: cover; background: #fff; }
 
-  .bottom { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; }
-  .bar { display: flex; align-items: center; gap: 9em; padding: 12em 14em 0; }
-  .glass { display: flex; align-items: center; justify-content: center; height: 48em; box-sizing: border-box;
+  .o18-bottom { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; }
+  .o18-bar { display: flex; align-items: center; gap: 9em; padding: 12em 14em 0; }
+  .o18-glass { display: flex; align-items: center; justify-content: center; height: 48em; box-sizing: border-box;
     border-radius: 999em; background: rgba(255,255,255,.85); border: 1em solid rgba(0,0,0,.06);
     box-shadow: 0 4em 14em rgba(0,0,0,.08), inset 0 1em 0 rgba(255,255,255,.9); color: #1c1c1e; }
-  .glass svg { height: 19em; width: auto; display: block; }
-  .round { flex: none; width: 48em; }
-  .off { color: #b8b8bd; }
-  .url { flex: 1; min-width: 0; gap: 10em; padding: 0 16em; }
-  .url svg { flex: none; }
-  .domain { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; font-size: 15em; font-weight: 500; }
-  .grow { flex: 1; }
-  .home { flex: none; width: 140em; height: 5em; margin: 0 auto 9em; border-radius: 3em; background: #111; }
+  .o18-glass svg { height: 19em; width: auto; display: block; }
+  .o18-round { flex: none; width: 48em; }
+  .o18-off { color: #b8b8bd; }
+  .o18-url { flex: 1; min-width: 0; gap: 10em; padding: 0 16em; }
+  .o18-url svg { flex: none; }
+  .o18-domain { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; font-size: 15em; font-weight: 500; }
+  .o18-grow { flex: 1; }
+  .o18-home { flex: none; width: 140em; height: 5em; margin: 0 auto 9em; border-radius: 3em; background: #111; }
 
-  .island { position: absolute; z-index: 5; top: 11em; left: 50%; transform: translateX(-50%);
+  .o18-island { position: absolute; z-index: 5; top: 11em; left: 50%; transform: translateX(-50%);
     width: 125em; height: 37em; border-radius: 999em; background: #000; pointer-events: none; }
 
-  .btn { position: absolute; z-index: -1; width: 4em; border-radius: 2em; background: linear-gradient(90deg, #1c1c1f, #5c5c62, #1c1c1f); }
-  .l { left: -3.5em; } .r { right: -3.5em; }
+  .o18-btn { position: absolute; z-index: -1; width: 4em; border-radius: 2em; background: linear-gradient(90deg, #1c1c1f, #5c5c62, #1c1c1f); }
+  .o18-l { left: -3.5em; } .o18-r { right: -3.5em; }
 </style>
-</head>
-<body>
-<div class="wrap"><div class="stage"><div class="phone">
-  <div class="btn l" style="top:140em;height:34em"></div>
-  <div class="btn l" style="top:200em;height:60em"></div>
-  <div class="btn l" style="top:272em;height:60em"></div>
-  <div class="btn r" style="top:230em;height:100em"></div>
-  <div class="btn r" style="top:560em;height:70em"></div>
+<div class="o18-wrap"><div class="o18-stage"><div class="o18-phone">
+  <div class="o18-btn o18-l" style="top:140em;height:34em"></div>
+  <div class="o18-btn o18-l" style="top:200em;height:60em"></div>
+  <div class="o18-btn o18-l" style="top:272em;height:60em"></div>
+  <div class="o18-btn o18-r" style="top:230em;height:100em"></div>
+  <div class="o18-btn o18-r" style="top:560em;height:70em"></div>
 
-  <div class="bezel"><div class="screen">
-    <div class="status">
-      <span class="time">9:41</span>
-      <div class="icons">
+  <div class="o18-bezel"><div class="o18-screen">
+    <div class="o18-status">
+      <span class="o18-time">9:41</span>
+      <div class="o18-icons">
         <svg viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
         <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 4.2a9.2 9.2 0 0 1 13 0"/><path d="M4.2 7a5.4 5.4 0 0 1 7.6 0"/><circle cx="8" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg>
         <svg viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><path d="M24 4v4c.8-.3 1.4-1.1 1.4-2S24.8 4.3 24 4Z" fill="currentColor" fill-opacity=".4"/></svg>
       </div>
     </div>
 
-    <video class="video" src="https://cdn.jsdelivr.net/gh/genesisjoaia/web-images@add-osg-video/on-site-guide-video/lion-monument-guide.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+    <video class="o18-video" src="https://cdn.jsdelivr.net/gh/genesisjoaia/web-images@add-osg-video/on-site-guide-video/lion-monument-guide.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
 
-    <div class="bottom">
-      <div class="bar">
-        <div class="glass round off"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2 10l8 8"/></svg></div>
-        <div class="glass url">
+    <div class="o18-bottom">
+      <div class="o18-bar">
+        <div class="o18-glass o18-round o18-off"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2 10l8 8"/></svg></div>
+        <div class="o18-glass o18-url">
           <svg viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 2h8M1 7h16M1 12h11"/></svg>
-          <span class="domain">on-site-guide.joaia.app</span>
+          <span class="o18-domain">on-site-guide.joaia.app</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
         </div>
-        <div class="glass round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 5a2 2 0 0 0-2-2H6a3 3 0 0 0-3 3v8a2 2 0 0 0 2 2"/></svg></div>
+        <div class="o18-glass o18-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 5a2 2 0 0 0-2-2H6a3 3 0 0 0-3 3v8a2 2 0 0 0 2 2"/></svg></div>
       </div>
-      <div class="grow"></div>
-      <div class="home"></div>
+      <div class="o18-grow"></div>
+      <div class="o18-home"></div>
     </div>
 
-    <div class="island"></div>
+    <div class="o18-island"></div>
   </div></div>
 </div></div></div>
-</body>
-</html>
